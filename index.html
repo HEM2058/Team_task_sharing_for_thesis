@@ -44,7 +44,7 @@
 
         p {
             font-size: 16px;
-            color: #555555555;
+            color: #555;
         }
 
         ol {
@@ -61,6 +61,11 @@
 
         footer p {
             font-size: 14px;
+        }
+
+        #due-date {
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -98,10 +103,41 @@
                 <!-- Add more steps here -->
             </ol>
         </section>
+
+        <section id="due-date">
+            <h2>Due Date:</h2>
+            <p>- Submit your documentation within 2 days from now (countdown timer below).</p>
+            <p id="countdown"></p>
+        </section>
     </main>
 
     <footer>
-        <p>Assigned Member:  Aakriti Bhattarai, Amulya Adhikari, Deekshya Chand Thakuri, Hem Raj Pandey, Janak Raj Joshi</p>
+        <p>Assigned member: 2023 Aakriti Bhattarai, Amulya Adhikari, Deekshya Chand Thakuri, Hem Raj Pandey, Janak Raj Joshi</p>
     </footer>
+
+    <script>
+        // Calculate the due date 2 days from now
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 2);
+
+        // Function to update the countdown timer
+        function updateCountdown() {
+            const now = new Date();
+            const timeDifference = dueDate - now;
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Update the countdown timer every second
+        setInterval(updateCountdown, 1000);
+
+        // Initial call to set the initial countdown
+        updateCountdown();
+    </script>
 </body>
 </html>
